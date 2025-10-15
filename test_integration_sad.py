@@ -1,8 +1,8 @@
 # test_integration_sad.py
 
+"""Integration tests for sad path scenarios in image upload and prediction."""
 import pytest
 from app import app
-from io import BytesIO
 
 @pytest.fixture
 def client():

@@ -1,4 +1,6 @@
-import os
+# test_model.py
+
+"""Unit tests for model functions: preprocess_img and predict_result."""
 import pytest
 import numpy as np
 from keras.models import load_model
@@ -47,7 +49,7 @@ def test_invalid_image_path():
     with pytest.raises(FileNotFoundError):
         preprocess_img("invalid/path/to/image.jpeg")
 
-def test_image_shape_on_prediction(model):
+def test_image_shape_on_prediction(_model):
     """Test the prediction output shape."""
     img_path = "test_images/5/Sign 5 (86).jpeg"  # Ensure the path is correct
     processed_img = preprocess_img(img_path)
@@ -56,7 +58,7 @@ def test_image_shape_on_prediction(model):
     prediction = predict_result(processed_img)
     assert isinstance(prediction, (int, np.integer)), "The prediction should be an integer"
 
-def test_model_predictions_consistency(model):
+def test_model_predictions_consistency(_model):
     """Test that predictions for the same input are consistent."""
     img_path = "test_images/7/Sign 7 (54).jpeg"
     processed_img = preprocess_img(img_path)

@@ -1,7 +1,10 @@
 # Importing required libs
 
 """Model functions for image preprocessing and prediction."""
-from keras.models import load_model
+#from keras.models import load_model
+
+from tensorflow.keras.models import load_model
+
 from keras.utils import img_to_array
 import numpy as np
 from PIL import Image

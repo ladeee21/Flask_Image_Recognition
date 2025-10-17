@@ -15,10 +15,7 @@ def model():
     model = load_model("digit_model.h5")
     return model
 
-# ---------------------
 # BASIC TESTS
-# ---------------------
-
 def test_preprocess_img():
     """Test the preprocess_img function."""
     img_path = "test_images/2/Sign 2 (97).jpeg"
@@ -33,9 +30,7 @@ def test_predict_result(model):
     prediction = predict_result(processed_img)
     assert isinstance(prediction, (int, np.integer)), "Prediction should be an integer class index"
 
-# ---------------------
 # ADVANCED TESTS
-# ---------------------
 
 def test_invalid_image_path():
     """Test with invalid path raises FileNotFoundError."""
@@ -56,9 +51,7 @@ def test_model_predictions_consistency(model):
     predictions = [predict_result(processed_img) for _ in range(5)]
     assert all(p == predictions[0] for p in predictions), "Predictions should be consistent"
 
-# ---------------------
 # NEW TESTS (Part 2)
-# ---------------------
 
 def test_blurry_image_prediction(model):
     """Test prediction on a blurry image (if available)."""

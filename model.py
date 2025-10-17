@@ -12,7 +12,6 @@ from PIL import Image
 # Loading model
 model = load_model("digit_model.h5")
 
-
 # Preparing and pre-processing the image
 def preprocess_img(img_path):
     """Preprocess the image for model prediction."""
@@ -21,7 +20,6 @@ def preprocess_img(img_path):
     img2arr = img_to_array(img_resize) / 255.0
     img_reshape = img2arr.reshape(1, 224, 224, 3)
     return img_reshape
-
 
 # Predicting function
 def predict_result(predict):

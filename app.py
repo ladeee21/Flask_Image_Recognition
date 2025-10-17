@@ -7,7 +7,6 @@ from model import preprocess_img, predict_result
 # Instantiating flask app
 app = Flask(__name__)
 
-
 # Home route
 @app.route("/")
 def main():
@@ -25,10 +24,10 @@ def predict_image_file():
             pred = predict_result(img)
             return render_template("result.html", predictions=str(pred))
 
-    except:
+    except  ValueError as e:
+        print(e)
         error = "File cannot be processed."
         return render_template("result.html", err=error)
-
 
 # Driver code
 if __name__ == "__main__":

@@ -3,19 +3,20 @@
 """Integration tests for happy path scenarios in image upload and prediction."""
 from io import BytesIO
 
-def test_successful_prediction(client):
-    """Test the successful image upload and prediction."""
-    # Create a mock image file with minimal valid content
-    img_data = BytesIO(b"fake_image_data")
-    img_data.name = "test.jpg"
+def simulate_image_upload(client, image_bytes, filename="test_image.jpg"):
+    """Helper to simulate an image upload to the /prediction endpoint."""
+    img_data = BytesIO(image_bytes)
+    img_data.name = filename
 
-    # Simulate a file upload to the correct prediction endpoint
     response = client.post(
-        "/prediction",  # Correct route for prediction
+        "/prediction",
         data={"file": (img_data, img_data.name)},
         content_type="multipart/form-data"
     )
+    return response
 
-    # Assertions
+def test_successful_prediction(client):
+    """Test the successful image upload and prediction."""
+    response = simulate_image_upload(client, b"fake_image_data", "test.jpg")
     assert response.status_code == 200
-    assert b"Prediction" in response.data  # Modify this check based on your output
+    assert b"Prediction" in response.data
